@@ -1,0 +1,89 @@
+
+class Hero extends React.Component{
+  constructor(props){
+    super(props);
+    this.state = {health: 100, weapon: null, positionX: 300, positionY: 300}
+  }
+  
+  componentWillMount(){
+    let that = this;
+    document.onkeydown = function(e){
+      switch(e.keyCode){
+        case 38:
+          that.up();
+          break;
+        case 40:
+          that.down();
+          break;
+        case 37:
+          that.left();
+          break;
+        case 39:
+          that.right();
+          break;
+        default:
+          console.log(e.keyCode)
+   }  
+    } 
+  }
+  
+  /*componentWillReceiveProps(){
+    let that = this;
+    document.onkeydown = function(e){
+      switch(e.keyCode){
+        case 38:
+          that.up();
+          break;
+        case 40:
+          that.down();
+          break;
+        case 37:
+          that.left();
+          break;
+        case 39:
+          that.right();
+          break;
+        default:
+          console.log(e.keyCode)
+   }  
+    } 
+  }*/
+  
+  up(){
+      let currentPY = this.state.positionY;
+      currentPY = currentPY-5;
+      this.setState({positionY: currentPY})
+      
+    }
+  
+  down(){
+    
+      let currentPY = this.state.positionY;
+      currentPY = currentPY+5;
+      this.setState({positionY: currentPY})
+      }
+    
+   left(){
+      let currentPX = this.state.positionX;
+      currentPX = currentPX-5;
+      this.setState({positionX: currentPX})
+      
+    }
+  right(){
+      let currentPX = this.state.positionX;
+      currentPX = currentPX+5;
+      this.setState({positionX: currentPX})
+      
+    }
+  
+  
+  render(){
+    let heroStyle = { height: 60, width: 40, position: "absolute", top: this.state.positionY, left: this.state.positionX}
+    
+    return (
+      <a href="https://drive.google.com/open?id=0B1ZYNw2fLvjKaWFabW5zSlBtSVk"><img src="https://drive.google.com/open?id=0B1ZYNw2fLvjKaWFabW5zSlBtSVk" style={heroStyle}/></a>
+      )
+  }
+}
+
+ReactDOM.render(<Hero />, document.getElementById("reactor"));
